@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>תיקון בעלון - שבת אחים</title>
+<meta name="description" content="רוצים לשנות מילה או משפט בעלון של בית הספר? כתבו מה כתוב עכשיו ומה לכתוב במקום, ונשלח לכם את העלון המתוקן לבדיקה בוואטסאפ.">
+<meta name="theme-color" content="#142c56">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="icons/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="תיקון בעלון - שבת אחים">
+<meta property="og:description" content="כתבו מה כתוב עכשיו ומה לכתוב במקום. אנחנו מתקנים ושולחים לכם את העלון המתוקן לבדיקה.">
+<meta property="og:image" content="https://abrahamgersten.github.io/shabat-achim-tikun/og-image.jpg">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body>
+<!-- Phosphor Icons 2.1.1, bold weight (@phosphor-icons/core), inlined so no third-party CSS blocks the first paint -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-plus" viewBox="0 0 256 256"><path fill="currentColor" d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 256 256"><path fill="currentColor" d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 256 256"><path fill="currentColor" d="M228,128a12,12,0,0,1-12,12H69l51.52,51.51a12,12,0,0,1-17,17l-72-72a12,12,0,0,1,0-17l72-72a12,12,0,0,1,17,17L69,116H216A12,12,0,0,1,228,128Z"/></symbol>
+  <symbol id="i-paper-plane-tilt" viewBox="0 0 256 256"><path fill="currentColor" d="M230.14,25.86a20,20,0,0,0-19.57-5.11l-.22.07L18.44,79a20,20,0,0,0-3.06,37.25L99,157l40.71,83.65a19.810,19.810,0,0,0,18,11.38c.57,0,1.15,0,1.73-.07A19.82,19.82,0,0,0,177,237.56L235.18,45.65a1.42,1.42,0,0,0,.07-.22A20,20,0,0,0,230.14,25.86ZM156.91,221.07l-34.37-70.64,46-45.95a12,12,0,0,0-17-17l-46,46L34.93,99.09,210,46Z"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 256 256"><path fill="currentColor" d="M176.49,95.51a12,12,0,0,1,0,17l-56,56a12,12,0,0,1-17,0l-24-24a12,12,0,1,1,17-17L112,143l47.51-47.52A12,12,0,0,1,176.49,95.51ZM236,128A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Z"/></symbol>
+</svg>
+
+<a class="skip-link" href="#request">דלגו לטופס</a>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <span class="brand">
+      <img src="assets/img/logo.webp" alt="שבת אחים - עלון פרשת שבוע" width="104" height="58">
+      <span class="brand-name">תיקון בעלון</span>
+    </span>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <h1>משהו בעלון צריך לשנות?</h1>
+        <p class="lede">כתבו מה כתוב עכשיו ומה לכתוב במקום. אנחנו מוצאים את המקום, מתקנים, ושולחים לכם את העלון המתוקן לבדיקה בוואטסאפ.</p>
+      </div>
+      <img class="hero-art" src="assets/img/mockup.webp" alt="עלון שבת אחים פתוח" width="1400" height="787" fetchpriority="high">
+    </div>
+  </section>
+
+  <section class="wrap form-wrap" id="request" tabindex="-1">
+    <form class="card" id="fixForm" novalidate>
+      <fieldset class="block">
+        <legend class="block-title">בית הספר</legend>
+        <div class="field">
+          <label for="f_school">שם בית הספר <span class="req" aria-hidden="true">*</span></label>
+          <input id="f_school" name="school" type="text" autocomplete="organization" required aria-describedby="h_school e_school">
+          <p class="hint" id="h_school">כפי שהוא מופיע בשם העלון</p>
+          <p class="field-error" id="e_school" hidden></p>
+        </div>
+      </fieldset>
+
+      <fieldset class="block">
+        <legend class="block-title">מה לשנות</legend>
+        <p class="hint block-hint">העתיקו את המילים בדיוק כמו שהן בעלון. אין צורך בניקוד: אם הטקסט מנוקד, הניקוד יתווסף לבד.</p>
+        <ol class="changes" id="changes"></ol>
+        <button class="btn btn-add" id="addChange" type="button"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg>הוספת שינוי</button>
+        <p class="sr-only" id="announce" aria-live="polite"></p>
+      </fieldset>
+
+      <fieldset class="block">
+        <legend class="block-title">לאן לשלוח את העלון המתוקן</legend>
+        <div class="fields">
+          <div class="field">
+            <label for="f_phone">מספר וואטסאפ <span class="req" aria-hidden="true">*</span></label>
+            <input id="f_phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required aria-describedby="h_phone e_phone">
+            <p class="hint" id="h_phone">לכאן יגיע העלון המתוקן לבדיקה שלכם</p>
+            <p class="field-error" id="e_phone" hidden></p>
+          </div>
+          <div class="field">
+            <label for="f_name">שם <span class="opt">(לא חובה)</span></label>
+            <input id="f_name" name="name" type="text" autocomplete="name">
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="submit-row">
+        <button class="btn btn-primary btn-lg" id="submitBtn" type="submit">
+          <span class="btn-label">שליחת הבקשה</span><svg class="icon flip-rtl" aria-hidden="true" focusable="false"><use href="#i-paper-plane-tilt"/></svg>
+        </button>
+        <p class="hint">לפני שהעלון יוצא, אנחנו עוברים על כל תיקון ושולחים לכם לבדיקה.</p>
+      </div>
+      <p class="form-error" id="formError" role="alert" hidden></p>
+    </form>
+
+    <div class="card done" id="done" hidden tabindex="-1">
+      <svg class="icon done-icon" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg>
+      <h2>הבקשה התקבלה</h2>
+      <p id="doneText"></p>
+      <ol class="done-list" id="doneList"></ol>
+      <button class="btn btn-outline" id="again" type="button">בקשה נוספת</button>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">שבת אחים - עלון פרשת שבוע לבתי ספר. שאלות: <a href="mailto:abrahamgersten@gmail.com">abrahamgersten@gmail.com</a></div>
+</footer>
+
+<template id="changeTpl">
+  <li class="change" role="group">
+    <div class="change-head">
+      <span class="change-title"></span>
+      <button class="btn-remove" type="button"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-x"/></svg><span class="remove-label">הסרה</span></button>
+    </div>
+    <div class="change-body">
+      <div class="field field-old">
+        <label>כתוב עכשיו</label>
+        <textarea rows="2"></textarea>
+      </div>
+      <svg class="icon change-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-left"/></svg>
+      <div class="field field-new">
+        <label>לכתוב במקום</label>
+        <textarea rows="2"></textarea>
+      </div>
+    </div>
+    <p class="field-error change-error" hidden></p>
+  </li>
+</template>
+
+<script src="js/app.js?v=2"></script>
+</body>
+</html>
