@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1">
+<link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 <a class="skip-link" href="#main">דלגו לתוכן הראשי</a>
@@ -25,10 +25,16 @@
 <form id="form" novalidate>
   <section class="hero"><div class="wrap">
     <h1>שולחים לנו את התכנים לעלון</h1>
-    <p class="lede">כותבים, מוסיפים תמונות, ולוחצים שליחה. הכול מגיע אלינו מסודר.</p>
+    <p class="lede">כותבים, מוסיפים תמונות ולוחצים שליחה. יש לכם עוד תכנים בהמשך? שומרים את מה שיש ומוסיפים מתי שנוח.</p>
   </div></section>
 
   <div class="wrap">
+    <section class="card saved" id="savedBox" aria-labelledby="ts" hidden>
+      <h2 id="ts">כבר שמרתם תכנים לעלון</h2>
+      <p class="hint" id="savedTxt"></p>
+      <div class="btn-row"><button type="button" class="btn btn-primary" id="finishNow">סיימתי, אין לי עוד. הפיקו לי עלון</button></div>
+    </section>
+
     <section class="card" aria-labelledby="t1">
       <h2 id="t1">מי אתם?</h2>
       <label for="school">שם בית הספר</label>
@@ -62,7 +68,6 @@
       <textarea id="notes" style="min-height:80px" placeholder="הערות לנו, לא חובה"></textarea>
     </section>
 
-    <p class="hint" id="saved" hidden></p>
     <div id="msg" role="status" aria-live="polite"></div>
   </div>
 </form>
@@ -80,13 +85,22 @@
 <div class="bar" id="bar"><div class="bar-in">
   <span class="bar-sum" id="sum"></span>
 </div>
-<div class="bar-in" style="margin-top:8px;flex-wrap:wrap">
-  <button type="button" class="btn btn-ghost" id="saveMore">שמירה, יש לי עוד תכנים</button>
-  <button type="button" class="btn btn-primary btn-lg" id="send">סיימתי, הפיקו לי עלון</button>
+<div class="bar-in" style="margin-top:8px">
+  <button type="button" class="btn btn-primary btn-lg bar-btn" id="send">שליחת התכנים</button>
 </div><div class="wrap"><div class="progress" id="prog" hidden><i></i></div></div></div>
+
+<dialog id="ask" aria-labelledby="askH" aria-describedby="askP">
+  <h2 id="askH">סיימתם להזין את כל התכנים לעלון?</h2>
+  <p class="hint" id="askP">יש לכם עוד תכנים? נשמור את מה ששלחתם עכשיו, ותוכלו להוסיף עוד מתי שתרצו, גם מחר. את העלון נתחיל להפיק רק אחרי שתלחצו "סיימתי".</p>
+  <div class="ask-btns">
+    <button type="button" class="btn btn-primary btn-lg" id="askDone">סיימתי, הפיקו לי עלון</button>
+    <button type="button" class="btn btn-ghost btn-lg" id="askMore">יש לי עוד, שמרו בינתיים</button>
+  </div>
+  <button type="button" class="ask-back" id="askBack">חזרה לעריכה</button>
+</dialog>
 
 <style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}</style>
 <script src="js/config.js"></script>
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 </body>
 </html>
