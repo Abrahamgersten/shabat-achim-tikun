@@ -62,6 +62,7 @@
       <textarea id="notes" style="min-height:80px" placeholder="הערות לנו, לא חובה"></textarea>
     </section>
 
+    <p class="hint" id="saved" hidden></p>
     <div id="msg" role="status" aria-live="polite"></div>
   </div>
 </form>
@@ -69,7 +70,7 @@
 <section class="wrap" id="done" hidden>
   <div class="card done">
     <div class="tick" aria-hidden="true">✓</div>
-    <h2>התכנים נשלחו, תודה!</h2>
+    <h2 id="doneH">התכנים נשלחו, תודה!</h2>
     <p class="hint" id="doneTxt"></p>
     <div class="btn-row" style="justify-content:center"><button class="btn btn-ghost" id="again" type="button">שליחה נוספת</button></div>
   </div>
@@ -77,12 +78,15 @@
 </main>
 
 <div class="bar" id="bar"><div class="bar-in">
-  <span class="bar-sum" id="sum">עוד לא הוספתם תכנים</span>
-  <button type="submit" form="form" class="btn btn-primary btn-lg" id="send">שליחה</button>
+  <span class="bar-sum" id="sum"></span>
+</div>
+<div class="bar-in" style="margin-top:8px;flex-wrap:wrap">
+  <button type="button" class="btn btn-ghost" id="saveMore">שמירה, יש לי עוד תכנים</button>
+  <button type="button" class="btn btn-primary btn-lg" id="send">סיימתי, הפיקו לי עלון</button>
 </div><div class="wrap"><div class="progress" id="prog" hidden><i></i></div></div></div>
 
 <style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}</style>
 <script src="js/config.js"></script>
-<script src="js/app.js?v=1"></script>
+<script src="js/app.js?v=3"></script>
 </body>
 </html>

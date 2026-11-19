@@ -80,23 +80,52 @@
 
   function msg(t, cls) { $('msg').innerHTML = '<div class="alert ' + cls + '"></div>'; $('msg').firstChild.textContent = t; }
 
-  $('form').addEventListener('submit', function (e) {
-    e.preventDefault();
+  // קבוצת שליחה: כל החלקים שנשמרו עד "סיימתי" נאספים יחד לעלון אחד
+  var BK = KEY + '_batch';
+  function batch() {
+    var b = null;
+    try { b = JSON.parse(localStorage.getItem(BK) || 'null'); } catch (e) {}
+    if (!b || !b.id) { b = { id: 'b' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8), parts: 0 }; saveBatch(b); }
+    return b;
+  }
+  function saveBatch(b) { try { localStorage.setItem(BK, JSON.stringify(b)); } catch (e) {} }
+  function clearBatch() { try { localStorage.removeItem(BK); } catch (e) {} }
+  function parts() { var b = null; try { b = JSON.parse(localStorage.getItem(BK) || 'null'); } catch (e) {} return b ? b.parts : 0; }
+  function note() {
+    var n = parts();
+    $('saved').textContent = n ? 'כבר נשמרו ' + (n === 1 ? 'חלק אחד' : n + ' חלקים') + ' מהתכנים שלכם. אפשר להמשיך להוסיף, וכשמסיימים ללחוץ על "סיימתי".' : '';
+    $('saved').hidden = !n;
+  }
+
+  function send(final) {
+    var hasContent = $('text').value.trim() || photos.length;
     if (!$('school').value.trim()) { msg('חסר שם בית הספר', 'err'); $('school').focus(); return; }
-    if (!$('text').value.trim() && !photos.length) { msg('הוסיפו טקסט או תמונה לפני השליחה', 'err'); return; }
+    if (!hasContent && !(final && parts())) { msg('הוסיפו טקסט או תמונה לפני השליחה', 'err'); return; }
+    var b = batch();
     var fd = new FormData();
     fd.append('school', $('school').value.trim()); fd.append('who', $('who').value.trim());
     fd.append('text', $('text').value.trim()); fd.append('notes', $('notes').value.trim());
+    fd.append('batch', b.id); fd.append('final', final ? '1' : '0');
     fd.append('count', photos.length);
     photos.forEach(function (p, i) { fd.append('photo_' + (i + 1), p.blob, 'photo_' + (i + 1) + '.jpg'); fd.append('caption_' + (i + 1), p.cap.trim()); });
     var ep = (window.CONTENT_APP || {}).ENDPOINT;
-    $('send').disabled = true; $('prog').hidden = false;
+    $('send').disabled = true; $('saveMore').disabled = true; $('prog').hidden = false;
     var done = function (ok, demo) {
-      $('send').disabled = false; $('prog').hidden = true;
+      $('send').disabled = false; $('saveMore').disabled = false; $('prog').hidden = true;
       if (!ok) { msg('השליחה לא הצליחה. התכנים נשארו כאן, אפשר לנסות שוב.', 'err'); return; }
       try { localStorage.removeItem(KEY); } catch (x) {}
+      if (!final) {
+        if (hasContent) { b.parts += 1; saveBatch(b); }
+        photos.forEach(function (p) { URL.revokeObjectURL(p.url); }); photos = [];
+        $('text').value = ''; $('notes').value = ''; render(); note();
+        msg('נשמר. אפשר להמשיך להוסיף תכנים, ובסוף ללחוץ "סיימתי, הפיקו לי עלון".', 'ok');
+        window.scrollTo(0, 0);
+        return;
+      }
+      clearBatch(); note();
       $('form').hidden = true; $('bar').hidden = true; $('done').hidden = false;
-      $('doneTxt').textContent = demo ? 'מצב הדגמה: כרגע שום דבר לא נשלח בפועל.' : 'קיבלנו את התכנים של ' + $('school').value.trim() + '.';
+      $('doneH').textContent = 'סיימתם, תודה!';
+      $('doneTxt').textContent = demo ? 'מצב הדגמה: כרגע שום דבר לא נשלח בפועל.' : 'קיבלנו את כל התכנים של ' + $('school').value.trim() + ' ואנחנו מתחילים להפיק את העלון.';
       window.scrollTo(0, 0);
     };
     if (!ep) { setTimeout(function () { done(true, true); }, 400); return; }
@@ -105,12 +134,19 @@
     x.onload = function () { done(x.status >= 200 && x.status < 300); };
     x.onerror = function () { done(false); };
     x.send(fd);
+  }
+  $('form').addEventListener('submit', function (e) { e.preventDefault(); });
+  $('saveMore').addEventListener('click', function () { send(false); });
+  $('send').addEventListener('click', function () {
+    var more = $('text').value.trim() || photos.length;
+    if (more || parts()) send(true); else msg('הוסיפו טקסט או תמונה לפני השליחה', 'err');
   });
 
   $('again').addEventListener('click', function () {
     photos.forEach(function (p) { URL.revokeObjectURL(p.url); }); photos = [];
     $('text').value = ''; $('notes').value = '';
-    $('done').hidden = true; $('form').hidden = false; $('bar').hidden = false; render();
+    $('done').hidden = true; $('form').hidden = false; $('bar').hidden = false; render(); note();
   });
+  note();
   render();
 })();
