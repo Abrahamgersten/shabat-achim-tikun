@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>הזנת תכנים לעלון - שבת אחים</title>
+<meta name="description" content="שולחים לנו בקלות את התכנים של בית הספר לעלון: טקסט, תמונות ותיאורים.">
+<meta name="theme-color" content="#142c56">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="https://abrahamgersten.github.io/shabat-achim-sections/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://abrahamgersten.github.io/shabat-achim-sections/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">דלגו לתוכן הראשי</a>
+<header class="site-header"><div class="wrap header-row">
+  <a href="./" class="brand"><img src="https://abrahamgersten.github.io/shabat-achim-sections/assets/img/logo.webp" alt="שבת אחים" width="72" height="40"><span>הזנת תכנים לעלון</span></a>
+</div></header>
+
+<main id="main">
+<form id="form" novalidate>
+  <section class="hero"><div class="wrap">
+    <h1>שולחים לנו את התכנים לעלון</h1>
+    <p class="lede">כותבים, מוסיפים תמונות, ולוחצים שליחה. הכול מגיע אלינו מסודר.</p>
+  </div></section>
+
+  <div class="wrap">
+    <section class="card" aria-labelledby="t1">
+      <h2 id="t1">מי אתם?</h2>
+      <label for="school">שם בית הספר</label>
+      <input type="text" id="school" autocomplete="organization" required>
+      <label for="who">שם הממלא/ת <span class="opt">(לא חובה)</span></label>
+      <input type="text" id="who" autocomplete="name">
+    </section>
+
+    <section class="card" aria-labelledby="t2">
+      <h2 id="t2">הטקסט שרוצים לשלוח</h2>
+      <p class="hint">הודעה, כתבה, ברכה, מה שרוצים שיופיע בעלון.</p>
+      <label for="text" class="sr">הטקסט</label>
+      <textarea id="text" placeholder="כותבים כאן"></textarea>
+    </section>
+
+    <section class="card" aria-labelledby="t3">
+      <h2 id="t3">תמונות</h2>
+      <p class="hint">אפשר לבחור הרבה תמונות מהגלריה בבת אחת. מתחת לכל תמונה אפשר להוסיף תיאור, וזה לא חובה.</p>
+      <div class="drop">
+        <strong>בוחרים תמונות מהגלריה</strong>
+        <button type="button" class="btn btn-primary btn-lg" id="pick">הוספת תמונות</button>
+        <input type="file" id="file" accept="image/*" multiple hidden>
+      </div>
+      <ul class="photos" id="photos" style="list-style:none;padding:0"></ul>
+      <div class="btn-row" id="moreRow" hidden><button type="button" class="btn btn-ghost" id="more">הוספת עוד תמונות</button></div>
+    </section>
+
+    <section class="card" aria-labelledby="t4">
+      <h2 id="t4">משהו נוסף?</h2>
+      <label for="notes" class="sr">הערות</label>
+      <textarea id="notes" style="min-height:80px" placeholder="הערות לנו, לא חובה"></textarea>
+    </section>
+
+    <div id="msg" role="status" aria-live="polite"></div>
+  </div>
+</form>
+
+<section class="wrap" id="done" hidden>
+  <div class="card done">
+    <div class="tick" aria-hidden="true">✓</div>
+    <h2>התכנים נשלחו, תודה!</h2>
+    <p class="hint" id="doneTxt"></p>
+    <div class="btn-row" style="justify-content:center"><button class="btn btn-ghost" id="again" type="button">שליחה נוספת</button></div>
+  </div>
+</section>
+</main>
+
+<div class="bar" id="bar"><div class="bar-in">
+  <span class="bar-sum" id="sum">עוד לא הוספתם תכנים</span>
+  <button type="submit" form="form" class="btn btn-primary btn-lg" id="send">שליחה</button>
+</div><div class="wrap"><div class="progress" id="prog" hidden><i></i></div></div></div>
+
+<style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}</style>
+<script src="js/config.js"></script>
+<script src="js/app.js?v=1"></script>
+</body>
+</html>
