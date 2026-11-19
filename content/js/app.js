@@ -57,8 +57,14 @@
   try {
     var d = JSON.parse(localStorage.getItem(KEY) || 'null');
     if (d) { $('school').value = d.school || ''; $('who').value = d.who || ''; $('text').value = d.text || ''; $('notes').value = d.notes || ''; }
+    var idn = JSON.parse(localStorage.getItem(KEY + '_id') || 'null');
+    if (idn) { if (!$('school').value) $('school').value = idn.school || ''; if (!$('who').value) $('who').value = idn.who || ''; }
   } catch (e) {}
+  function saveId() {
+    try { localStorage.setItem(KEY + '_id', JSON.stringify({ school: $('school').value.trim(), who: $('who').value.trim() })); } catch (e) {}
+  }
   ['school', 'who', 'text', 'notes'].forEach(function (i) { $(i).addEventListener('input', save); });
+  ['school', 'who'].forEach(function (i) { $(i).addEventListener('input', saveId); });
 
   function openPicker() { $('file').click(); }
   $('pick').addEventListener('click', openPicker);
